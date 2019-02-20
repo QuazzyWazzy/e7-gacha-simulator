@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
+        <title>E7 Summon Simulator</title>
+    </head>
+    <body>
+        <div class="input-group">
+            <button type="button" class="btn btn-primary" id="summon">Summon</button>
+            <div class="dropdown">
+                <button type="button" class="btn dropdown-toggle text-shadow banner banner-bg-normal" data-toggle="dropdown" data-banner="NormalBanner" data-summon="NormalSummon" id="banner-select">Normal Summon</button>
+                <div class="dropdown-menu">
+                    <div class="dropdown-item banner banner-item banner-bg-normal" data-banner="NormalBanner" data-summon="NormalSummon">Normal Summon</div>
+                    <div class="dropdown-item banner banner-item banner-bg-mystic" data-banner="NormalBanner" data-summon="MysticSummon">Mystic Summon</div>
+                    <div class="dropdown-item banner banner-item banner-bg-moonlight" data-banner="MoonlightBanner" data-summon="MoonlightSummon">Moonlight Summon</div>
+                    <div class="dropdown-item banner banner-item banner-bg-rateup" data-banner="RateUpBanner" data-summon="NormalSummon">Rate Up Summon</div>
+                    <div class="dropdown-item banner banner-item banner-bg-limited" data-banner="LimitedBanner" data-summon="NormalSummon">Limited Summon</div>
+                </div>
+            </div>
+            <!--<button type="button" class="btn btn-primary"><span data-feather="chevrons-right"></span></button>-->
+        </div> 
+
+        <div class="grid-container">
+            <div class="summon-grid">
+                <div class="summon-card grid-placeholder">
+                    <div class="grid-placeholder-text text-shadow">
+                        <h2> Summon Simulator v1.0 </h2>
+                        <h4> - Limited Banner: <a class="link" href="https://epicsevendb.com/hero/luna" target="_blank">Luna</a> </h4>
+                        <h4> - New Hero: <a class="link" href="https://epicsevendb.com/hero/tamarinne" target="_blank">Tamarinne</a> </h4>
+                        <h4> - New Artifact: <a class="link" href="https://epicsevendb.com/artifact/idols-cheer" target="_blank">Idol's Cheer</a> </h4>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+        <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
+        <script src="https://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.4/seedrandom.min.js"></script>
+
+        <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+        <script>
+            feather.replace();
+        </script>
+
+        <script src="unit-pool.js"></script>
+        <script src="banner-rates.js"></script>
+        <script src="main.js"></script>
+    </body>
+</html>

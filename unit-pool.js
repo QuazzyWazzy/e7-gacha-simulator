@@ -1,11 +1,11 @@
 var Pool = {
 
     LimitedUnit: "luna",
-    NewUnit: "tamarinne",
-    NewArtifact: "idol-cheer",
+    NewHero: "tamarinne",
+    NewArtifact: "idols-cheer",
 
     NormalSummon: {
-        Hero: {
+        hero: {
             5: [
                 "aramintha",
                 "baal-sezan",
@@ -61,7 +61,6 @@ var Pool = {
                 "aither",
                 "alexa",
                 "azalea",
-                "bask",
                 "butcher-corps-inquisitor",
                 "carmainerose",
                 "carrot",
@@ -85,7 +84,7 @@ var Pool = {
                 "tieria"
             ]
         },
-        Artifact: {
+        artifact: {
             5: [
                 "abyssal-crown",
                 "alexas-basket",
@@ -157,7 +156,7 @@ var Pool = {
     },
 
     MoonlightSummon: {
-        Hero: {
+        hero: {
             5: [
                 "arbiter-vildred",
                 "dark-corvus",
@@ -189,7 +188,7 @@ var Pool = {
             3: [
                 "arowell",
                 "celeste",
-                "chaos-sect-axe",
+                "church-of-ilryos-axe",
                 "doris",
                 "elson",
                 "gloomyrain",
@@ -208,7 +207,7 @@ var Pool = {
     },
 
     MysticSummon: {
-        Hero: {
+        hero: {
             5: [
                 "specimen-sez",
                 "baal-sezan"
@@ -223,16 +222,16 @@ var Pool = {
             3: [
                 "azalea",
                 "alexa",
-                "alday",
+                "adlay",
                 "nemunas"
             ]
         },
-        Artifact: {
+        artifact: {
             5: [
                 "sigurd-scythe"
             ],
             4: [
-                "magaharas-tome",
+                "magarahas-tome",
                 "tagehels-ancient-book",
                 "strak-gauntlet"
             ],

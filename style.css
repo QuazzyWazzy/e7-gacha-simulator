@@ -1,0 +1,303 @@
+html {
+    line-height: 1.3;
+    font-size: 10px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    padding: 1rem;
+}
+
+body {
+    background: linear-gradient(0deg, #9cf5ff, #a6ddfd, #a6bbfa);
+    background-size: 600% 1000%;
+
+    -webkit-animation: AnimationName 10s ease infinite;
+    -moz-animation: AnimationName 10s ease infinite;
+    animation: AnimationName 10s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:51% 0%}
+    50%{background-position:50% 50%}
+    100%{background-position:51% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:51% 0%}
+    50%{background-position:50% 50%}
+    100%{background-position:51% 0%}
+}
+@keyframes AnimationName { 
+    0%{background-position:51% 0%}
+    50%{background-position:50% 50%}
+    100%{background-position:51% 0%}
+}
+
+.btn {
+    font-size: 1.5rem;
+    border: 0.25rem solid rgb(31, 65, 126);
+    border-radius: 0;
+}
+
+.btn:focus, .btn:active, .btn:active:focus { 
+    outline: 0;
+    box-shadow: none;
+}
+
+.btn-primary {
+    background: linear-gradient(to bottom, rgb(7, 38, 23) 0%, rgb(40, 119, 18) 25%, rgb(40, 119, 18) 50%, rgb(255, 255, 255) 51%);
+    background-size: 400% 400%;
+}
+
+.btn-primary:hover {
+    border: 0.25rem solid rgb(31, 65, 126); 
+    background-position-y: 10%;
+}
+
+.btn-primary:focus:active {
+    color: rgb(40, 119, 18) !important;
+    background-position-y: 100%;
+}
+
+.text-shadow {
+    text-shadow: -0.1rem -0.1rem 0 #000, 0.1rem -0.1rem 0 #000, -0.1rem 0.1rem 0 #000, 0.1rem 0.1rem 0 #000;
+}
+
+#summon {
+    border-top-left-radius: 1.5rem;
+}
+
+.banner {
+    font-size: 2.5rem;
+    width: 32rem;
+    color: white;
+    background-color: rgb(31, 65, 126);
+    background-size: 32.4rem;
+    background-position-x: -0.2rem;
+    animation: banner-scroll 5s ease-in-out infinite;
+}
+
+@keyframes banner-scroll {
+    0% { background-position-y: 10%; }
+    50% { background-position-y: 90%; }
+    100% { background-position-y: 10%; }
+}
+
+.dropdown-menu {
+    border: 0.25rem solid rgb(31, 65, 126);
+}
+
+.banner-item {
+    font-size: 2rem;
+    width: 26rem;
+    border: none;
+    color: black;
+    background-size: 0;
+    background-color: white;
+}
+
+.banner-item:hover {
+    color: white;
+    background-size: 26.2rem;
+    text-shadow: -0.1rem -0.1rem 0 #000, 0.1rem -0.1rem 0 #000, -0.1rem 0.1rem 0 #000, 0.1rem 0.1rem 0 #000;
+    transform: scale(1.1);
+    transition: all .1s ease; 
+}
+
+.banner-bg-normal {
+    background-image: url("assets/normal-banner.png");
+}
+
+.banner-bg-mystic {
+    background-image: url("assets/mystic-banner.png");
+}
+
+.banner-bg-moonlight {
+    background-image: url("assets/moonlight-banner.png");
+}
+
+.banner-bg-rateup {
+    background-image: url("assets/rate-up-banner.png");
+}
+
+.banner-bg-limited {
+    background-image: url("assets/limited-banner.png");
+}
+
+.grid-container {
+    background: linear-gradient(to bottom, rgb(31, 65, 126) 0%,rgb(15, 32, 63) 100%);
+    border-radius: 0 0 1.75rem 1.75rem;
+}
+
+.summon-grid { 
+    padding: 1rem;
+    /*margin: auto;*/ 
+}
+
+.summon-grid:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.grid-placeholder {
+    height: 9rem;
+}
+
+.grid-placeholder-text {
+    font-size: 2rem;
+    color: white;
+    position: absolute;
+    left: 10%;
+}
+
+.grid-placeholder-hide {
+    display: none;
+}
+
+.link, .link:hover {
+    color: white;
+}
+
+.summon-card {
+    float: left;
+    cursor: pointer;
+    position: relative;
+    margin: 0;
+    margin: 0 1rem 1.5rem 0;
+    width: 26rem;
+    max-width: 26rem;
+}
+
+.summon-card-image {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 9rem;
+    border-radius: 1rem;
+    border: 0.2rem solid #5cb6ff;
+}
+
+.summon-card-image:hover {
+    transition: all .25s ease; 
+    border-color: #ffe75c;
+}
+
+.summon-card-image:hover .unit-img {
+    transform: scale(1.1);
+}
+
+[data-type] .unit-img {
+    position: relative;
+    z-index: 2;
+    transition: all .25s ease;
+}
+
+[data-type="hero"] .unit-img {
+    left: 7.5rem;
+}
+
+.color-div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.unit-bg { 
+    z-index: 1;
+    background: linear-gradient(to bottom, rgb(31, 65, 126) 0%,rgb(23, 110, 174) 100%);
+}
+
+.unit-overlay {
+    z-index: 5;
+    background: linear-gradient(to bottom, rgba(22,46,90,1) 0%, rgba(16,76,122,1) 100%);
+    opacity: 1;
+}
+
+.unit-loaded {
+    transition: all .5s ease; 
+    opacity: 0;
+}
+
+.load-icon {
+    position: absolute;
+    z-index: 10;
+    opacity: 1;
+    bottom: -5.5rem;
+    left: 3rem;
+    transform: scale(0.3);
+}
+
+.hide {
+    transition: all .5s ease; 
+    transform: scale(0);
+}
+
+.name-div {
+    position: absolute;  
+    top: 0.25rem;
+    left: 0.75rem;
+    z-index: 3;
+}
+
+.class-icon {
+    object-fit: contain;
+    height: 2.5rem;
+}
+
+.unit-name {
+    display: inline-block;
+    margin-left: 0.5rem;
+    margin-top: 0.25rem;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.attribute-div {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    z-index: 3;
+}
+
+.element-icon {
+    object-fit: contain; 
+    height: 2rem;  
+}
+
+/* Yeah this copy-paste method sucks and is redundant. Idk how to SCSS */
+
+[class*=star-] {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    background-color: transparent;
+    background-repeat: no-repeat;
+}
+
+.star-3 {
+    width: 3.825rem;
+    height: 1.45rem;
+    background-size: 1.5rem 1.45rem;
+    background-image: url(https://assets.epicsevendb.com/star/cm_icon_star.png),url(https://assets.epicsevendb.com/star/cm_icon_star.png),url(https://assets.epicsevendb.com/star/cm_icon_star.png);
+    background-position-x: 2.325rem,1.2rem,.075rem;
+    background-position-y: 100%;
+}
+
+.star-4 {
+    width: 5.25rem;
+    height: 1.45rem;
+    background-size: 1.5rem 1.45rem;
+    background-image: url(https://assets.epicsevendb.com/star/cm_icon_star.png),url(https://assets.epicsevendb.com/star/cm_icon_star.png),url(https://assets.epicsevendb.com/star/cm_icon_star.png),url(https://assets.epicsevendb.com/star/cm_icon_star.png);
+    background-position-x: 3.75rem,2.625rem,1.5rem,.375rem;
+    background-position-y: 100%;
+}
+
+.star-5 {
+    width: 6rem;
+    height: 1.45rem;
+    background-size: 1.5rem 1.45rem;
+    background-image: url(https://assets.epicsevendb.com/star/cm_icon_star.png),url(https://assets.epicsevendb.com/star/cm_icon_star.png),url(https://assets.epicsevendb.com/star/cm_icon_star.png),url(https://assets.epicsevendb.com/star/cm_icon_star.png),url(https://assets.epicsevendb.com/star/cm_icon_star.png);
+    background-position-x: 4.5rem,3.375rem,2.25rem,1.125rem,0;
+    background-position-y: 100%;
+}
