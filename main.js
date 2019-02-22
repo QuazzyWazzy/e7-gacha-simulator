@@ -4,16 +4,28 @@ const databaseURL = "https://epicsevendb.com/";
 const assetsURL = "https://assets.epicsevendb.com/";
 
 const maxCardAmount = 47;
+const limitRolls = false;
 var unitsAcquired = 0;
 var unitCache = {};
 
 // Seed RNG
 var seeded = false;
-$.get(randomURL + "strings/?num=1&len=19&digits=on&upperalpha=on&loweralpha=on&unique=on&format=plain&rnd=new", function(data, status) {
-    if(status == "success") {
-        Math.seedrandom(data);
-        seeded = true;
-    }
+var currentSeed;
+function seedRNG(seedString) {
+    Math.seedrandom(seedString);
+    currentSeed = seedString;
+    seeded = true;
+}
+function getRandomSeed(callback) {
+    $.get(randomURL + "strings/?num=1&len=19&digits=on&upperalpha=on&loweralpha=on&unique=on&format=plain&rnd=new", function(data, status) {
+        if(status == "success") {
+            callback(data);
+            console.log("Seed: " + data);
+        }       
+    });
+}
+getRandomSeed(function(data) {
+    seedRNG(data);
 });
 
 // Create Grid
@@ -27,7 +39,7 @@ $("#summon").click(function() {
         var $banner_select = $("#banner-select");
         Roll($banner_select.attr("data-banner"), $banner_select.attr("data-summon"), unitsAcquired);
 
-        var $new_card = $("<div class='summon-card' id='unit" + unitsAcquired + "'></div>");
+        var $new_card = $("<div class='summon-card' id='unit-" + unitsAcquired + "'></div>");
         var $card_image = $("<a class='summon-card-image shadow'></div></a>");
         var $color_divs = $("<div class='color-div unit-overlay'></div><div class='color-div unit-bg shadow'>");
         var $loading = $("<img class='load-icon'>").attr("src", "assets/loading.svg");
@@ -40,12 +52,22 @@ $("#summon").click(function() {
         .isotope("prepended", $new_card);
         unitsAcquired++;
 
-        if(!$(".grid-placeholder").hasClass("hide"))
+        if(!$(".grid-placeholder").hasClass("grid-placeholder-hide"))
             $(".grid-placeholder").addClass("grid-placeholder-hide");
 
-        if(unitsAcquired > maxCardAmount) 
-            $summon_grid.isotope("remove", $summon_grid.find("#unit" + (unitsAcquired - maxCardAmount - 1)).isotope("layout"));    
+        if(unitsAcquired > maxCardAmount && limitRolls) 
+            $summon_grid.isotope("remove", $summon_grid.find("#unit-" + (unitsAcquired - maxCardAmount - 1))).isotope("layout");    
     }  
+});
+
+$("#refresh").click(function() {
+    $summon_grid.children(".summon-card").each(function(index) {
+        if($(this).attr("id") != undefined)
+            $summon_grid.isotope("remove", $(this)).isotope("layout");
+    });
+    if($(".grid-placeholder").hasClass("grid-placeholder-hide"))
+        $(".grid-placeholder").removeClass("grid-placeholder-hide");
+    $summon_grid.isotope.isotope("layout");
 });
 
 function Roll(banner, pool, id) {
@@ -62,11 +84,10 @@ function Roll(banner, pool, id) {
         var result = parseInt(data) / 100;
         $.each(r, function(i) {
             if(i > 0) {
-                if(result >= r[i - 1][0] && result < r[i][0])
-                {
+                if(result >= r[i - 1][0] && result < r[i][0]) {
                     var rarity = r[i][1];
                     var type = r[i][2];
-
+                    // Rolled Banner Unit
                     if(rarity == "New") {
                         if(banner == "LimitedBanner")
                             summonUnit(type, Pool.LimitedUnit, id);
@@ -77,6 +98,7 @@ function Roll(banner, pool, id) {
                                 summonUnit(type, Pool.NewArtifact, id);
                         }         
                     } else {
+                        // Get random unit from pool
                         var currentPool = Pool[pool][type][rarity];
                         getRandom(1, currentPool.length, function(data) {
                             var index = parseInt(data) - 1;
@@ -94,13 +116,13 @@ function getRandom(minValue, maxValue, callback) {
     $.get(randomURL + request, function(data, status) {
         if(status == "success") 
             callback(data);
-    });*/
+    });*/ //This method takes too long to load, hence the seeded RNG
     callback(minValue + (Math.floor(Math.random() * (maxValue - minValue + 1))));
 }
 
 function summonUnit(type, fileId, id) {
     getUnitInfo(type, fileId, function(unit) {   
-        var $card = $("#unit" + id);
+        var $card = $("#unit-" + id);
         var imageUnit = assetsURL + type + "/" + fileId + "/small" + getImgExtension(type);
         var imageError = assetsURL + type + "/_placeholder/small_missing" + getImgExtension(type);
         var image = $("<img>")

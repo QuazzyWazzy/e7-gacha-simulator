@@ -1,8 +1,8 @@
 var Pool = {
 
     LimitedUnit: "luna",
-    NewHero: "tamarinne",
-    NewArtifact: "idols-cheer",
+    NewHero: "lidica",
+    NewArtifact: "sword-of-judgement",
 
     NormalSummon: {
         hero: {
@@ -25,6 +25,7 @@ var Pool = {
                 "ravi",
                 "sez",
                 "sigret",
+                "tamarinne",
                 "tenebria",
                 "tywin",
                 "vildred",
@@ -94,6 +95,7 @@ var Pool = {
                 "elbris-ritual-sword",
                 "eticas-scepter",
                 "holy-sacrifice",
+                "idols-cheer",
                 "iron-fan",
                 "noble-oath",
                 "otherworldly-machinery",

@@ -9,10 +9,10 @@ html {
 body {
     background: linear-gradient(0deg, #9cf5ff, #a6ddfd, #a6bbfa);
     background-size: 600% 1000%;
-
+    /*
     -webkit-animation: AnimationName 10s ease infinite;
     -moz-animation: AnimationName 10s ease infinite;
-    animation: AnimationName 10s ease infinite;
+    animation: AnimationName 10s ease infinite;*/
 }
 
 @-webkit-keyframes AnimationName {
@@ -30,6 +30,12 @@ body {
     50%{background-position:50% 50%}
     100%{background-position:51% 0%}
 }
+
+.feather {
+    width: 2rem;
+    height: 2rem;
+    vertical-align: text-bottom;
+  }
 
 .btn {
     font-size: 1.5rem;
@@ -67,12 +73,12 @@ body {
 
 .banner {
     font-size: 2.5rem;
-    width: 32rem;
+    width: 32.75rem;
     color: white;
     background-color: rgb(31, 65, 126);
-    background-size: 32.4rem;
-    background-position-x: -0.2rem;
+    background-size: 32.75rem;
     animation: banner-scroll 5s ease-in-out infinite;
+    transition: all .2s ease; 
 }
 
 @keyframes banner-scroll {
@@ -92,14 +98,20 @@ body {
     color: black;
     background-size: 0;
     background-color: white;
+    transition: all 0s; 
+}
+
+.banner:hover {
+    color: white;
+    text-shadow: -0.1rem -0.1rem 0 #000, 0.1rem -0.1rem 0 #000, -0.1rem 0.1rem 0 #000, 0.1rem 0.1rem 0 #000;
+    background-size: 36rem;
+    background-position-x: -2rem;
 }
 
 .banner-item:hover {
-    color: white;
-    background-size: 26.2rem;
-    text-shadow: -0.1rem -0.1rem 0 #000, 0.1rem -0.1rem 0 #000, -0.1rem 0.1rem 0 #000, 0.1rem 0.1rem 0 #000;
+    background-size: 26rem;
+    background-position-x: 0rem;
     transform: scale(1.1);
-    transition: all .1s ease; 
 }
 
 .banner-bg-normal {
@@ -115,11 +127,11 @@ body {
 }
 
 .banner-bg-rateup {
-    background-image: url("assets/rate-up-banner.png");
+    background-image: url("assets/lidica-banner.png");
 }
 
 .banner-bg-limited {
-    background-image: url("assets/limited-banner.png");
+    background-image: url("assets/luna-banner.png");
 }
 
 .grid-container {
@@ -128,8 +140,7 @@ body {
 }
 
 .summon-grid { 
-    padding: 1rem;
-    /*margin: auto;*/ 
+    padding: 1rem; 
 }
 
 .summon-grid:after {
@@ -139,18 +150,19 @@ body {
 }
 
 .grid-placeholder {
-    height: 9rem;
+    height: 10rem;
 }
 
 .grid-placeholder-text {
     font-size: 2rem;
     color: white;
     position: absolute;
-    left: 10%;
+    left: 2.5%;
+    width: 30rem;
 }
 
 .grid-placeholder-hide {
-    display: none;
+    visibility: hidden;
 }
 
 .link, .link:hover {
@@ -164,7 +176,6 @@ body {
     margin: 0;
     margin: 0 1rem 1.5rem 0;
     width: 26rem;
-    max-width: 26rem;
 }
 
 .summon-card-image {

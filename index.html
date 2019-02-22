@@ -3,13 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link href="style.css" rel="stylesheet">
         <title>E7 Summon Simulator</title>
     </head>
     <body>
         <div class="input-group">
             <button type="button" class="btn btn-primary" id="summon">Summon</button>
+            <button type="button" class="btn btn-primary" id="refresh"><span data-feather="refresh-cw"></span></button>
             <div class="dropdown">
                 <button type="button" class="btn dropdown-toggle text-shadow banner banner-bg-normal" data-toggle="dropdown" data-banner="NormalBanner" data-summon="NormalSummon" id="banner-select">Normal Summon</button>
                 <div class="dropdown-menu">
@@ -27,10 +28,10 @@
             <div class="summon-grid">
                 <div class="summon-card grid-placeholder">
                     <div class="grid-placeholder-text text-shadow">
-                        <h2> Summon Simulator v1.0 </h2>
+                        <h2> E7 Summon Simulator </h2>
                         <h4> - Limited Banner: <a class="link" href="https://epicsevendb.com/hero/luna" target="_blank">Luna</a> </h4>
-                        <h4> - New Hero: <a class="link" href="https://epicsevendb.com/hero/tamarinne" target="_blank">Tamarinne</a> </h4>
-                        <h4> - New Artifact: <a class="link" href="https://epicsevendb.com/artifact/idols-cheer" target="_blank">Idol's Cheer</a> </h4>
+                        <h4> - New Hero: <a class="link" href="https://epicsevendb.com/hero/lidica" target="_blank">Lidica</a> </h4>
+                        <h4> - New Artifact: <a class="link" href="https://epicsevendb.com/artifact/sword-of-judgement" target="_blank">Sword of Judgement</a> </h4>
                     </div>
                 </div>
             </div>
@@ -38,8 +39,8 @@
         
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
-        <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
-        <script src="https://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.4/seedrandom.min.js"></script>
 
         <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
