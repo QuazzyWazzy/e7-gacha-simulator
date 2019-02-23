@@ -57,7 +57,7 @@ $("#summon").click(function() {
         $summon_grid.prepend($new_card)
         .isotope("prepended", $new_card);
         unitsAcquired++;
-        Update();
+        filterGrid(); 
 
         if(!$(".grid-placeholder").hasClass("grid-placeholder-hide")) {
             $(".grid-placeholder").addClass("grid-placeholder-hide");
@@ -79,7 +79,7 @@ $("#refresh").click(function() {
         $summon_grid.isotope("revealItemElements", $(".grid-placeholder")).isotope("layout");
     }
     unitsAcquired = 0;
-    Update(); 
+    filterGrid(); 
 });
 
 $("#open-menu").click(function() {
@@ -258,9 +258,4 @@ function updateRollStats() {
         $(this).text(amount);
     });
     $("#rolls-total").text(unitsAcquired);
-}
-
-function Update() {
-    filterGrid();
-    updateRollStats();
 }
