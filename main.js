@@ -13,14 +13,17 @@ var seeded = false;
 var currentSeed;
 function seedRNG(seedString) {
     Math.seedrandom(seedString);
+    $("#seed").val(seedString);
     currentSeed = seedString;
     seeded = true;
+    console.log("Seed: " + seedString);
 }
 function getRandomSeed(callback) {
+    $(".seed").prop("disabled", true);
     $.get(randomURL + "strings/?num=1&len=19&digits=on&upperalpha=on&loweralpha=on&unique=on&format=plain&rnd=new", function(data, status) {
         if(status == "success") {
             callback(data);
-            console.log("Seed: " + data);
+            $(".seed").prop("disabled", false);
         }       
     });
 }
@@ -37,7 +40,9 @@ var $summon_grid = $(".summon-grid").isotope({
 $("#summon").click(function() {
     if(seeded) {
         var $banner_select = $("#banner-select");
-        Roll($banner_select.attr("data-banner"), $banner_select.attr("data-summon"), unitsAcquired);
+        var banner = $banner_select.attr("data-banner");
+        var pool = $banner_select.attr("data-pool");
+        Roll(banner, pool, unitsAcquired);
 
         var $new_card = $("<div class='summon-card' id='unit-" + unitsAcquired + "'></div>");
         var $card_image = $("<a class='summon-card-image shadow'></div></a>");
@@ -47,13 +52,17 @@ $("#summon").click(function() {
         $card_image.append($color_divs);
         $card_image.append($loading);
         $new_card.append($card_image);
+        $new_card.attr("data-banner", banner).attr("data-pool", pool);
 
         $summon_grid.prepend($new_card)
         .isotope("prepended", $new_card);
         unitsAcquired++;
+        Update();
 
-        if(!$(".grid-placeholder").hasClass("grid-placeholder-hide"))
+        if(!$(".grid-placeholder").hasClass("grid-placeholder-hide")) {
             $(".grid-placeholder").addClass("grid-placeholder-hide");
+            $summon_grid.isotope("hideItemElements", $(".grid-placeholder")).isotope("layout");
+        }   
 
         if(unitsAcquired > maxCardAmount && limitRolls) 
             $summon_grid.isotope("remove", $summon_grid.find("#unit-" + (unitsAcquired - maxCardAmount - 1))).isotope("layout");    
@@ -61,13 +70,60 @@ $("#summon").click(function() {
 });
 
 $("#refresh").click(function() {
-    $summon_grid.children(".summon-card").each(function(index) {
+    $summon_grid.children(".summon-card").each(function() {
         if($(this).attr("id") != undefined)
             $summon_grid.isotope("remove", $(this)).isotope("layout");
     });
-    if($(".grid-placeholder").hasClass("grid-placeholder-hide"))
+    if($(".grid-placeholder").hasClass("grid-placeholder-hide")) {
         $(".grid-placeholder").removeClass("grid-placeholder-hide");
-    $summon_grid.isotope.isotope("layout");
+        $summon_grid.isotope("revealItemElements", $(".grid-placeholder")).isotope("layout");
+    }
+    unitsAcquired = 0;
+    Update(); 
+});
+
+$("#open-menu").click(function() {
+    $("#seed").val(currentSeed);
+});
+
+$("#seed-copy").click(function() {
+    $("#seed").select();
+    document.execCommand("copy");
+});
+
+$("#seed-randomize").click(function() {
+    getRandomSeed(function(data) {
+        $("#seed").val(data);
+    });
+});
+
+$("#seed-save").click(function() {
+    seedRNG($("#seed").val());
+});
+
+$(".menu-select-item").click(function() {
+    $(".menu-screen").each(function() {
+        if(!$(this).hasClass("menu-hide"))
+            $(this).addClass("menu-hide");
+    });
+    $("." + $(this).attr("data-menu")).removeClass("menu-hide");
+});
+
+$(".banner-item").click(function() {
+    var $banner_select = $("#banner-select");
+    var banner = $(this).attr("data-banner");
+    var pool = $(this).attr("data-pool");
+
+    $banner_select.attr("data-banner", banner);
+    $banner_select.attr("data-pool", pool);
+
+    var $item_attr = $(this).attr("class");
+    var itemLastClass = $item_attr.substr($item_attr.lastIndexOf(" ") + 1);
+    var bannerLastClass = $banner_select.attr("class").split(" ").pop();
+
+    $banner_select.removeClass(bannerLastClass).addClass(itemLastClass);
+    $banner_select.text($(this).text());
+    filterGrid();
 });
 
 function Roll(banner, pool, id) {
@@ -153,12 +209,12 @@ function summonUnit(type, fileId, id) {
             $card.append($atrribute_div);
             
             $card.find(".unit-overlay").addClass("unit-loaded");
-            $card.find(".load-icon").addClass("hide"); 
+            $card.find(".load-icon").addClass("load-icon-hide"); 
             $card.find(".summon-card-image").attr("href", databaseURL + type + "/" + fileId).attr("target", "_blank"); console.log(unit.name); 
         })
         .attr("src", imageUnit)
         .addClass("unit-img");
-        $card.find(".summon-card-image").append(image).attr("data-type", type).attr("data-unit", fileId);  
+        $card.find(".summon-card-image").append(image).attr("data-type", type).attr("data-unit", fileId);
     });
 }
 
@@ -170,7 +226,7 @@ function getUnitInfo(type, fileId, callback) {
         $.get(databaseAPI + request, function(data, status) {
             if(status == "success") {
                 var unit = data.results[0];
-                unitCache[fileId] = unit;
+                //unitCache[fileId] = unit;
                 callback(unit);
             } 
         });
@@ -183,13 +239,27 @@ function getImgExtension(type) {
     return ".jpg";
 }
 
-$(".banner-item").on("click", function() {
+function filterGrid() {
     var $banner_select = $("#banner-select");
-    $banner_select.attr("data-banner", $(this).attr("data-banner"));
-    $banner_select.attr("data-summon", $(this).attr("data-summon"));
-    var $item_attr = $(this).attr("class");
-    var itemLastClass = $item_attr.substr($item_attr.lastIndexOf(" ") + 1);
-    var bannerLastClass = $banner_select.attr("class").split(" ").pop();
-    $banner_select.removeClass(bannerLastClass).addClass(itemLastClass);
-    $banner_select.html($(this).html());
-});
+    //$summon_grid.isotope({ filter: "[data-banner='" + $banner_select.attr("data-banner") + "'][data-pool='" + $banner_select.attr("data-pool") + "'],.grid-placeholder" });
+    $summon_grid.isotope({ 
+        filter: function() {
+            if($(this).hasClass("grid-placeholder")) 
+                return (!$(this).hasClass("grid-placeholder-hide"));  
+            return ($(this).attr("data-banner") == $banner_select.attr("data-banner") && $(this).attr("data-pool") == $banner_select.attr("data-pool"));
+        }
+    });
+}
+
+function updateRollStats() {
+    $(".stats").each(function() {
+        var amount = $summon_grid.find("[data-banner='" + $(this).attr("data-banner") + "'][data-pool='" + $(this).attr("data-pool") + "']").length;
+        $(this).text(amount);
+    });
+    $("#rolls-total").text(unitsAcquired);
+}
+
+function Update() {
+    filterGrid();
+    updateRollStats();
+}

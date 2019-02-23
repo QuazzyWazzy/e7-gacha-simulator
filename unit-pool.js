@@ -212,35 +212,35 @@ var Pool = {
         hero: {
             5: [
                 "specimen-sez",
-                "baal-sezan"
+                "tenebria"
             ],
             4: [
                 "kitty-clarissa",
-                "zerato",
-                "leo",
-                "maya",
-                "dominiel"
+                "rose",
+                "achates",
+                "romann",
+                "clarissa"
             ],
             3: [
-                "azalea",
-                "alexa",
-                "adlay",
-                "nemunas"
+                "carrot",
+                "enott",
+                "jecht",
+                "butcher-corps-inquisitor"
             ]
         },
         artifact: {
             5: [
-                "sigurd-scythe"
+                "elbris-ritual-sword"
             ],
             4: [
-                "magarahas-tome",
-                "tagehels-ancient-book",
-                "strak-gauntlet"
+                "sira-ren",
+                "elyhas-knife",
+                "waters-origin"
             ],
             3: [
-                "forest-totem",
-                "goblins-lamp",
-                "alsacian-spear"
+                "mighty-yaksha",
+                "cursed-compass",
+                "oath-key"
             ]
         }
     }

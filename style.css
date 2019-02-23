@@ -7,35 +7,20 @@ html {
 }
 
 body {
-    background: linear-gradient(0deg, #9cf5ff, #a6ddfd, #a6bbfa);
-    background-size: 600% 1000%;
-    /*
-    -webkit-animation: AnimationName 10s ease infinite;
-    -moz-animation: AnimationName 10s ease infinite;
-    animation: AnimationName 10s ease infinite;*/
+    background: linear-gradient(to bottom, #9cf5ff, #a6ddfd, #a6bbfa, #a6bbfa, #a6ddfd, #9cf5ff);
+    background-size: 100% 200vh;
+    animation: bg-animation 10s infinite;
 }
 
-@-webkit-keyframes AnimationName {
-    0%{background-position:51% 0%}
-    50%{background-position:50% 50%}
-    100%{background-position:51% 0%}
-}
-@-moz-keyframes AnimationName {
-    0%{background-position:51% 0%}
-    50%{background-position:50% 50%}
-    100%{background-position:51% 0%}
-}
-@keyframes AnimationName { 
-    0%{background-position:51% 0%}
-    50%{background-position:50% 50%}
-    100%{background-position:51% 0%}
+@keyframes bg-animation {
+    from { background-position-y: 200vh; }
+    to { background-position-y: 400vh; }
 }
 
 .feather {
     width: 2rem;
     height: 2rem;
-    vertical-align: text-bottom;
-  }
+}
 
 .btn {
     font-size: 1.5rem;
@@ -63,12 +48,83 @@ body {
     background-position-y: 100%;
 }
 
-.text-shadow {
-    text-shadow: -0.1rem -0.1rem 0 #000, 0.1rem -0.1rem 0 #000, -0.1rem 0.1rem 0 #000, 0.1rem 0.1rem 0 #000;
+.btn-secondary {
+    background: linear-gradient(to bottom, rgb(43, 43, 43) 0%, rgb(18, 95, 119) 25%, rgb(18, 95, 119) 50%, rgb(255, 255, 255) 51%);
+    background-size: 400% 400%;
+    border: 0.1rem solid rgb(71, 137, 192);
+}
+
+.btn-secondary:hover {
+    border: 0.1rem solid rgb(92, 182, 255);
+    background-position-y: 10%;
+}
+
+.btn-secondary:focus:active {
+    color: rgb(18, 95, 119) !important;
+    background-position-y: 100%;
+}
+
+.modal-content {
+    border-radius: 1.5rem;
+    background: linear-gradient(to bottom, rgb(31, 65, 126) 0%,rgb(15, 32, 63) 100%);
+    border: 0.2rem solid rgb(92, 182, 255);
+    color: white;
+}
+
+.modal-header {
+    border-bottom: 0.1rem solid rgb(71, 137, 192);
+}
+
+.modal-footer {
+    border-top: 0.1rem solid rgb(71, 137, 192);   
+}
+
+#menu-select {
+    font-size: 2rem;
+    color: white;
+    border: none;
+}
+
+.dropdown-menu {
+    font-size: 1.5rem;
+    background: linear-gradient(to bottom, rgb(31, 65, 126) 0%,rgb(15, 32, 63) 100%);
+}
+
+.dropdown-item {
+    color: white;
+}
+
+.menu-select-dropdown {
+    border: 0.1rem solid rgb(71, 137, 192);
+}
+
+.menu-hide {
+    display: none;
+}
+
+.input-group-text, .form-control, .form-control:focus {
+    border: 0.1rem solid rgb(71, 137, 192);
+    background-color: rgb(15, 32, 63);
+    color: white;
+    font-size: 1.5rem;
+}
+
+.form-control:disabled {
+    border: 0.1rem solid rgb(71, 137, 192);
+    background-color: rgb(15, 32, 63);
+    color: rgb(197, 197, 197);
+}
+
+h4 {
+    margin-left: 0.5rem;
 }
 
 #summon {
-    border-top-left-radius: 1.5rem;
+    border-top-left-radius: 1.75rem;
+}
+
+.text-shadow {
+    text-shadow: -0.1rem -0.1rem 0 #000, 0.1rem -0.1rem 0 #000, -0.1rem 0.1rem 0 #000, 0.1rem 0.1rem 0 #000;
 }
 
 .banner {
@@ -87,7 +143,7 @@ body {
     100% { background-position-y: 10%; }
 }
 
-.dropdown-menu {
+.banner-menu {
     border: 0.25rem solid rgb(31, 65, 126);
 }
 
@@ -95,17 +151,14 @@ body {
     font-size: 2rem;
     width: 26rem;
     border: none;
-    color: black;
+    background: none;
     background-size: 0;
-    background-color: white;
     transition: all 0s; 
 }
 
 .banner:hover {
     color: white;
     text-shadow: -0.1rem -0.1rem 0 #000, 0.1rem -0.1rem 0 #000, -0.1rem 0.1rem 0 #000, 0.1rem 0.1rem 0 #000;
-    background-size: 36rem;
-    background-position-x: -2rem;
 }
 
 .banner-item:hover {
@@ -136,21 +189,18 @@ body {
 
 .grid-container {
     background: linear-gradient(to bottom, rgb(31, 65, 126) 0%,rgb(15, 32, 63) 100%);
-    border-radius: 0 0 1.75rem 1.75rem;
+    border-radius: 1.75rem;
 }
 
-.summon-grid { 
+.summon-grid {
     padding: 1rem; 
-}
-
-.summon-grid:after {
     content: "";
     display: block;
     clear: both;
 }
 
 .grid-placeholder {
-    height: 10rem;
+    height: 12.5rem;
 }
 
 .grid-placeholder-text {
@@ -161,17 +211,12 @@ body {
     width: 30rem;
 }
 
-.grid-placeholder-hide {
-    visibility: hidden;
-}
-
 .link, .link:hover {
     color: white;
 }
 
 .summon-card {
     float: left;
-    cursor: pointer;
     position: relative;
     margin: 0;
     margin: 0 1rem 1.5rem 0;
@@ -185,12 +230,12 @@ body {
     width: 100%;
     height: 9rem;
     border-radius: 1rem;
-    border: 0.2rem solid #5cb6ff;
+    border: 0.2rem solid rgb(92, 182, 255);
 }
 
 .summon-card-image:hover {
     transition: all .25s ease; 
-    border-color: #ffe75c;
+    border-color: rgb(255, 231, 92);
 }
 
 .summon-card-image:hover .unit-img {
@@ -239,7 +284,7 @@ body {
     transform: scale(0.3);
 }
 
-.hide {
+.load-icon-hide {
     transition: all .5s ease; 
     transform: scale(0);
 }

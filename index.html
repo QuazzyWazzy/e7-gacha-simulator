@@ -8,30 +8,96 @@
         <title>E7 Summon Simulator</title>
     </head>
     <body>
-        <div class="input-group">
-            <button type="button" class="btn btn-primary" id="summon">Summon</button>
-            <button type="button" class="btn btn-primary" id="refresh"><span data-feather="refresh-cw"></span></button>
-            <div class="dropdown">
-                <button type="button" class="btn dropdown-toggle text-shadow banner banner-bg-normal" data-toggle="dropdown" data-banner="NormalBanner" data-summon="NormalSummon" id="banner-select">Normal Summon</button>
-                <div class="dropdown-menu">
-                    <div class="dropdown-item banner banner-item banner-bg-normal" data-banner="NormalBanner" data-summon="NormalSummon">Normal Summon</div>
-                    <div class="dropdown-item banner banner-item banner-bg-mystic" data-banner="NormalBanner" data-summon="MysticSummon">Mystic Summon</div>
-                    <div class="dropdown-item banner banner-item banner-bg-moonlight" data-banner="MoonlightBanner" data-summon="MoonlightSummon">Moonlight Summon</div>
-                    <div class="dropdown-item banner banner-item banner-bg-rateup" data-banner="RateUpBanner" data-summon="NormalSummon">Rate Up Summon</div>
-                    <div class="dropdown-item banner banner-item banner-bg-limited" data-banner="LimitedBanner" data-summon="NormalSummon">Limited Summon</div>
+        <div class="modal fade" id="menu-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="dropdown">
+                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" id="menu-select">Menu</button>
+                            <div class="dropdown-menu menu-select-dropdown">
+                                <div class="dropdown-item menu-select-item" data-menu="menu-about">About</div>
+                                <div class="dropdown-item menu-select-item" data-menu="menu-seed">RNG Seed</div>
+                                <div class="dropdown-item menu-select-item" data-menu="menu-stats">Roll Stats</div>
+                                <div class="dropdown-item menu-select-item" data-menu="menu-rates">Banner Rates</div>    
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><span data-feather="x"></span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="menu-screen menu-about">
+                            <h3>About</h3>
+                            <h4>Epic Seven Summon Simulator by QuazzyWazzy</h4>
+                            <h4>Assets and data from <a class="link" href="https://epicsevendb.com" target="_blank">EpicSevenDB.com</a></h4>
+                            <br>
+                            <h5>Note: Some images are still missing from the database. Unitl they get added, the placeholder image would be used as substitute. Sorry for this inconvenience.</h5>
+                        </div>
+                        <div class="menu-screen menu-seed menu-hide">
+                            <h3>RNG Seed</h3>
+                            <h5>This simulator uses a seeded generator to randomize rolls. Using the same seed will generate the same rolls (assuming they are done in the same order).</h5>
+                            <br>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                   <span class="input-group-text"><span data-feather="edit"></span></span> 
+                                </div>
+                                <input type="text" class="form-control seed" placeholder="Seed" id="seed">
+                                <button type="button" class="btn btn-secondary seed" id="seed-copy"><span data-feather="copy"></span></button>
+                                <button type="button" class="btn btn-secondary seed" id="seed-randomize"><span data-feather="repeat"></span></button>
+                                <button type="button" class="btn btn-secondary seed" id="seed-save" data-dismiss="modal"><span data-feather="check"></span></button>
+                            </div>
+                        </div>
+                        <div class="menu-screen menu-stats menu-hide">
+                            <h3>Roll Stats</h3>
+                            <h4>Normal: <a class="link stats" data-banner="NormalBanner" data-pool="NormalSummon">0</a></h4>
+                            <h4>Mystic: <a class="link stats" data-banner="NormalBanner" data-pool="MysticSummon">0</a></h4>
+                            <h4>Moonlight: <a class="link stats" data-banner="MoonlightBanner" data-pool="MoonlightSummon">0</a></h4>
+                            <h4>Rate Up: <a class="link stats" data-banner="RateUpBanner" data-pool="NormalSummon">0</a></h4>
+                            <h4>Limited: <a class="link stats" data-banner="LimitedBanner" data-pool="NormalSummon">0</a></h4>
+                            <h4>Total: <a class="link" id="rolls-total">0</a></h4>
+                        </div>
+                        <div class="menu-screen menu-rates menu-hide">
+                            <h3>Banner Rates</h3>
+                            <h5>Coming Soon</h5>
+                        </div>   
+                    </div>
+                    <div class="modal-footer">
+                        <h5>V1.2</h5>
+                    </div>
                 </div>
             </div>
-            <!--<button type="button" class="btn btn-primary"><span data-feather="chevrons-right"></span></button>-->
-        </div> 
-
+        </div>
         <div class="grid-container">
+            <div class="input-group">
+                <button type="button" class="btn btn-primary" id="summon">Summon</button>
+                <button type="button" class="btn btn-primary" id="refresh"><span data-feather="refresh-cw"></span></button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#menu-modal" id="open-menu"><span data-feather="menu"></span></button>
+                <div class="dropdown">
+                    <button type="button" class="btn dropdown-toggle text-shadow banner banner-bg-normal" data-toggle="dropdown" data-banner="NormalBanner" data-pool="NormalSummon" id="banner-select">Normal Summon</button>
+                    <div class="dropdown-menu banner-menu">
+                        <div class="dropdown-item banner banner-item banner-bg-normal" data-banner="NormalBanner" data-pool="NormalSummon">Normal Summon</div>
+                        <div class="dropdown-item banner banner-item banner-bg-mystic" data-banner="NormalBanner" data-pool="MysticSummon">Mystic Summon</div>
+                        <div class="dropdown-item banner banner-item banner-bg-moonlight" data-banner="MoonlightBanner" data-pool="MoonlightSummon">Moonlight Summon</div>
+                        <div class="dropdown-item banner banner-item banner-bg-rateup" data-banner="RateUpBanner" data-pool="NormalSummon">Rate Up Summon</div>
+                        <div class="dropdown-item banner banner-item banner-bg-limited" data-banner="LimitedBanner" data-pool="NormalSummon">Limited Summon</div>
+                    </div>
+                </div>
+            </div> 
             <div class="summon-grid">
                 <div class="summon-card grid-placeholder">
                     <div class="grid-placeholder-text text-shadow">
-                        <h2> E7 Summon Simulator </h2>
-                        <h4> - Limited Banner: <a class="link" href="https://epicsevendb.com/hero/luna" target="_blank">Luna</a> </h4>
-                        <h4> - New Hero: <a class="link" href="https://epicsevendb.com/hero/lidica" target="_blank">Lidica</a> </h4>
-                        <h4> - New Artifact: <a class="link" href="https://epicsevendb.com/artifact/sword-of-judgement" target="_blank">Sword of Judgement</a> </h4>
+                        <h2> Current Banner Units: </h2>
+                        <h4> ※ Limited Banner: 
+                            <a class="link" href="https://epicsevendb.com/hero/luna" target="_blank">Luna</a> 
+                        </h4>
+                        <h4> ※ New Hero: 
+                            <a class="link" href="https://epicsevendb.com/hero/lidica" target="_blank">Lidica</a> 
+                        </h4>
+                        <h4> ※ New Artifact: 
+                            <a class="link" href="https://epicsevendb.com/artifact/sword-of-judgement" target="_blank">Sword of Judgement</a> 
+                        </h4>
+                        <h4> ※ Mystic Heroes: 
+                            <a class="link" href="https://epicsevendb.com/hero/specimen-sez" target="_blank">Specimen Sez</a> &
+                            <a class="link" href="https://epicsevendb.com/hero/kitty-clarissa" target="_blank">Kitty Clarissa</a> 
+                        </h4>
                     </div>
                 </div>
             </div>
