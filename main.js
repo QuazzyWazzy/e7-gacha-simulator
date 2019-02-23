@@ -84,6 +84,7 @@ $("#refresh").click(function() {
 
 $("#open-menu").click(function() {
     $("#seed").val(currentSeed);
+    updateRollStats();
 });
 
 $("#seed-copy").click(function() {
