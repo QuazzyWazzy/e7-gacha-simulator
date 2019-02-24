@@ -5,8 +5,31 @@ const assetsURL = "https://assets.epicsevendb.com/";
 
 const maxCardAmount = 47;
 const limitRolls = false;
+
 var unitsAcquired = 0;
-var unitCache = {};
+var unitCache = {
+    hero: { loaded: false },
+    artifact: { loaded: false }
+};
+var cardList= [];
+
+// Cahce Units
+function loadUnits() {
+    cahceUnits("hero");
+    cahceUnits("artifact");
+}
+function cahceUnits(type) {
+    $.get(databaseAPI + type, function(data, status) {
+        if(status == "success") {
+            var units = data.results;
+            $.each(units, function(i) {
+                unitCache[type][units[i].fileId] = units[i];
+            });
+            unitCache[type].loaded = true;
+        } 
+    });   
+}
+loadUnits();
 
 // Seed RNG
 var seeded = false;
@@ -31,6 +54,16 @@ getRandomSeed(function(data) {
     seedRNG(data);
 });
 
+// Load Checker
+var loadCheck = setInterval(function() {
+    if(seeded && unitCache.hero.loaded && unitCache.artifact.loaded) {
+        $("#summon").text("Summon")
+        .find(".summon-load-icon").addClass("load-icon-hide");
+        console.log("Unit Info Cached");
+        clearInterval(loadCheck);
+    }
+}, 100);
+
 // Create Grid
 var $summon_grid = $(".summon-grid").isotope({
     itemSelector: ".summon-card"
@@ -38,11 +71,10 @@ var $summon_grid = $(".summon-grid").isotope({
 
 // Summon
 $("#summon").click(function() {
-    if(seeded) {
+    if(seeded && unitCache.hero.loaded && unitCache.artifact.loaded) {
         var $banner_select = $("#banner-select");
         var banner = $banner_select.attr("data-banner");
         var pool = $banner_select.attr("data-pool");
-        Roll(banner, pool, unitsAcquired);
 
         var $new_card = $("<div class='summon-card' id='unit-" + unitsAcquired + "'></div>");
         var $card_image = $("<a class='summon-card-image shadow'></div></a>");
@@ -53,11 +85,13 @@ $("#summon").click(function() {
         $card_image.append($loading);
         $new_card.append($card_image);
         $new_card.attr("data-banner", banner).attr("data-pool", pool);
-
         $summon_grid.prepend($new_card)
         .isotope("prepended", $new_card);
+        cardList[unitsAcquired] = $new_card;
         unitsAcquired++;
-        filterGrid(); 
+
+        Roll(banner, pool, unitsAcquired);
+        filterGrid();
 
         if(!$(".grid-placeholder").hasClass("grid-placeholder-hide")) {
             $(".grid-placeholder").addClass("grid-placeholder-hide");
@@ -65,7 +99,8 @@ $("#summon").click(function() {
         }   
 
         if(unitsAcquired > maxCardAmount && limitRolls) 
-            $summon_grid.isotope("remove", $summon_grid.find("#unit-" + (unitsAcquired - maxCardAmount - 1))).isotope("layout");    
+            $summon_grid.isotope("remove", $summon_grid.find("#unit-" + (unitsAcquired - maxCardAmount - 1))).isotope("layout");
+            
     }  
 });
 
@@ -79,6 +114,7 @@ $("#refresh").click(function() {
         $summon_grid.isotope("revealItemElements", $(".grid-placeholder")).isotope("layout");
     }
     unitsAcquired = 0;
+    cardList = [];
     filterGrid(); 
 });
 
@@ -178,51 +214,53 @@ function getRandom(minValue, maxValue, callback) {
 }
 
 function summonUnit(type, fileId, id) {
-    getUnitInfo(type, fileId, function(unit) {   
-        var $card = $("#unit-" + id);
-        var imageUnit = assetsURL + type + "/" + fileId + "/small" + getImgExtension(type);
-        var imageError = assetsURL + type + "/_placeholder/small_missing" + getImgExtension(type);
-        var image = $("<img>")
-        .on("error", function() {
-            $(this).attr("src", imageError);
-        })
-        .on("load", function() {                  
-            var $name_div = $("<div class='name-div'></div>");
-            if((type == "artifact" && unit.rarity > 3) || (type == "hero")) {
-                var classURL = assetsURL + "class/cm_icon_role_" + (type == "hero" ? unit.classType : unit.exclusive[0]) + ".png";
-                var $class_img = $("<img class='class-icon' src='" + classURL +"'>");
-                $name_div.append($class_img);
-            }
+    var unit = unitCache[type][fileId];
+    var $card = cardList[id - 1];
+    var imageUnit = assetsURL + type + "/" + fileId + "/small" + getImgExtension(type);
+    var imageError = assetsURL + type + "/_placeholder/small_missing" + getImgExtension(type);
+    var image = $("<img>")
+    .on("error", function() {
+        $(this).attr("src", imageError);
+    })
+    .on("load", function() {                  
+        var $name_div = $("<div class='name-div'></div>");
+        if((type == "artifact" && unit.rarity > 3) || (type == "hero")) {
+            var classURL = assetsURL + "class/cm_icon_role_" + (type == "hero" ? unit.classType : unit.exclusive[0]) + ".png";
+            var $class_img = $("<img class='class-icon' src='" + classURL +"'>");
+            $name_div.append($class_img);
+        }
 
-            var $unit_name = $("<div class='unit-name text-shadow'>" + unit.name + "</div>");
-            $name_div.append($unit_name);
-            $card.append($name_div);
+        var $unit_name = $("<div class='unit-name text-shadow'>" + unit.name + "</div>");
+        $name_div.append($unit_name);
+        $card.append($name_div);
 
-            var $atrribute_div = $("<div class='attribute-div'></div>");
-            if(type == "hero") {
-                var elementURL = assetsURL + "attribute/cm_icon_pro" + ((unit.element == "dark" || unit.element == "light") ? "m" : "") + unit.element + ".png";
-                var $element_img = $("<img class='element-icon' src='" + elementURL +"'>");
-                $atrribute_div.append($element_img);
-            }
+        var $atrribute_div = $("<div class='attribute-div'></div>");
+        if(type == "hero") {
+            var elementURL = assetsURL + "attribute/cm_icon_pro" + ((unit.element == "dark" || unit.element == "light") ? "m" : "") + unit.element + ".png";
+            var $element_img = $("<img class='element-icon' src='" + elementURL +"'>");
+            $atrribute_div.append($element_img);
+        }
 
-            var $star = $("<div class='star-" + unit.rarity + "'></div>");
-            $atrribute_div.append($star);
-            $card.append($atrribute_div);
-            
-            $card.find(".unit-overlay").addClass("unit-loaded");
-            $card.find(".load-icon").addClass("load-icon-hide"); 
-            $card.find(".summon-card-image").attr("href", databaseURL + type + "/" + fileId).attr("target", "_blank"); console.log(unit.name); 
-        })
-        .attr("src", imageUnit)
-        .addClass("unit-img");
-        $card.find(".summon-card-image").append(image).attr("data-type", type).attr("data-unit", fileId);
-    });
+        var $star = $("<div class='star-" + unit.rarity + "'></div>");
+        $atrribute_div.append($star);
+        $card.append($atrribute_div);
+        
+        $card.find(".summon-card-image").attr("href", databaseURL + type + "/" + fileId).attr("target", "_blank"); console.log(unit.name);
+        $card.find(".unit-overlay").addClass("unit-loaded");
+        $card.find(".load-icon").addClass("load-icon-hide");
+    })
+    .attr("src", imageUnit)
+    .addClass("unit-img");
+    $card.find(".summon-card-image").append(image).attr("data-type", type).attr("data-unit", fileId);
+
 }
 
+/* Deprecated, better caching system implemented
 function getUnitInfo(type, fileId, callback) {
-    /*if(unitCache[fileId] != undefined)
-        callback(unitCache[fileId]);
-    else {*/
+    if(unitCache[fileId] != undefined) {
+        setTimeout(callback(unitCache[fileId]), 100);
+    }
+    else {
         var request = type + "/" + fileId;
         $.get(databaseAPI + request, function(data, status) {
             if(status == "success") {
@@ -231,8 +269,9 @@ function getUnitInfo(type, fileId, callback) {
                 callback(unit);
             } 
         });
-    //} 
+    } 
 }
+*/
 
 function getImgExtension(type) {
     if(type == "hero")
