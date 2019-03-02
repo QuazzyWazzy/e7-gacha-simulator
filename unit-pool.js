@@ -210,35 +210,35 @@ var Pool = {
         hero: {
             5: [
                 "specimen-sez",
-                "tenebria"
+                "vildred"
             ],
             4: [
                 "kitty-clarissa",
-                "rose",
-                "achates",
-                "romann",
-                "clarissa"
+                "surin",
+                "armin",
+                "karin",
+                "lots"
             ],
             3: [
-                "carrot",
-                "enott",
-                "jecht",
-                "butcher-corps-inquisitor"
+                "tieria",
+                "jena",
+                "pearlhorizon",
+                "taranor-royal-guard"
             ]
         },
         artifact: {
             5: [
-                "elbris-ritual-sword"
+                "wind-rider"
             ],
             4: [
-                "sira-ren",
-                "elyhas-knife",
-                "waters-origin"
+                "aurius",
+                "wondrous-potion-vial",
+                "sashe-ithanes"
             ],
             3: [
-                "mighty-yaksha",
-                "cursed-compass",
-                "oath-key"
+                "grail-of-blood",
+                "ranons-memorandum",
+                "atmas-portal"
             ]
         }
     }
