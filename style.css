@@ -29,9 +29,9 @@ body {
 }
 
 .btn:focus, .btn:active, .btn:active:focus, .btn:disabled { 
-    outline: 0;
-    box-shadow: none;
-    border: 0.25rem solid rgb(31, 65, 126);
+    outline: 0 !important;
+    box-shadow: none !important;
+    border: 0.25rem solid rgb(31, 65, 126) !important;
 }
 
 .btn-primary {
@@ -47,6 +47,10 @@ body {
 .btn-primary:focus:active {
     color: rgb(40, 119, 18) !important;
     background-position-y: 100%;
+}
+
+.btn-secondary:focus, .btn-secondary:active, .btn-secondary:active:focus, .btn-secondary:disabled { 
+    border: 0.1rem solid rgb(71, 137, 192) !important;
 }
 
 .btn-secondary {
@@ -84,6 +88,12 @@ body {
     font-size: 2rem;
     color: white;
     border: none;
+}
+
+#menu-select:focus, #menu-select:active, #menu-select:focus:active {
+    outline: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
 }
 
 .dropdown-menu {
