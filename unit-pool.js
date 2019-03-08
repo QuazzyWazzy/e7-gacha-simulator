@@ -1,8 +1,8 @@
 var Pool = {
 
     LimitedUnit: "luna",
-    NewHero: "lidica",
-    NewArtifact: "sword-of-judgement",
+    NewHero: "charles",
+    NewArtifact: "justice-for-all",
 
     NormalSummon: {
         hero: {
@@ -19,6 +19,7 @@ var Pool = {
                 "iseria",
                 "kayron",
                 "ken",
+                "lidica",
                 "kise",
                 "krau",
                 "ludwig",
@@ -104,6 +105,7 @@ var Pool = {
                 "shimadra-staff",
                 "sigurd-scythe",
                 "song-of-stars",
+                "sword-of-judgement",
                 "time-matter",
                 "uberiuss-tooth",
                 "wind-rider"
