@@ -166,6 +166,7 @@ var Pool = {
                 "maid-chloe",
                 "martial-artist-ken",
                 "ruele-of-light",
+                "silver-blade-aramintha",
                 "specimen-sez",
                 "specter-tenebria"
             ],
@@ -174,6 +175,7 @@ var Pool = {
                 "assassin-cidd",
                 "assassin-coli",
                 "auxiliary-lots",
+                "blaze-dingo",
                 "blood-blade-karin",
                 "celestial-mercedes",
                 "challenger-dominiel",
@@ -211,36 +213,36 @@ var Pool = {
     MysticSummon: {
         hero: {
             5: [
-                "specimen-sez",
-                "krau"
+                "silver-blade-aramintha",
+                "yufine"
             ],
             4: [
-                "kitty-clarissa",
-                "schuri",
-                "crozet",
-                "cartuja",
-                "rin"
+                "blaze-dingo",
+                "leo",
+                "surin",
+                "angelica",
+                "karin"
             ],
             3: [
-                "hazel",
+                "carmainerose",
+                "nemunas",
                 "mistychain",
-                "mucacha",
-                "kiris"
+                "roozid"
             ]
         },
         artifact: {
             5: [
-                "rod-of-amaryllis"
+                "durandal"
             ],
             4: [
-                "adamant-shield",
-                "moonlight-dreamblade",
-                "wondrous-potion-vial"
+                "hell-cutter",
+                "elyhas-knife",
+                "infinity-basket"
             ],
             3: [
-                "prophetic-candlestick",
-                "labyrinth-cube",
-                "timeless-anchor"
+                "daydream-joker",
+                "ancient-sheath",
+                "butterfly-mandolin"
             ]
         }
     }
