@@ -1,8 +1,8 @@
 var Pool = {
 
     LimitedUnit: "luna",
-    NewHero: "charles",
-    NewArtifact: "justice-for-all",
+    NewHero: "cermia",
+    NewArtifact: "border-coin",
 
     NormalSummon: {
         hero: {
@@ -12,6 +12,7 @@ var Pool = {
                 "basar",
                 "bellona",
                 "cecilia",
+                "charles",
                 "charlotte",
                 "chloe",
                 "destina",
@@ -98,6 +99,7 @@ var Pool = {
                 "holy-sacrifice",
                 "idols-cheer",
                 "iron-fan",
+                "justice-for-all",
                 "noble-oath",
                 "purple-talisman",
                 "rhianna-luciella",
@@ -214,35 +216,35 @@ var Pool = {
         hero: {
             5: [
                 "silver-blade-aramintha",
-                "yufine"
+                "haste"
             ],
             4: [
                 "blaze-dingo",
-                "leo",
-                "surin",
-                "angelica",
-                "karin"
+                "zerato",
+                "rin",
+                "corvus",
+                "silk"
             ],
             3: [
-                "carmainerose",
-                "nemunas",
-                "mistychain",
-                "roozid"
+                "kluri",
+                "montmorancy",
+                "helga",
+                "azalea"
             ]
         },
         artifact: {
             5: [
-                "durandal"
+                "abyssal-crown"
             ],
             4: [
-                "hell-cutter",
-                "elyhas-knife",
-                "infinity-basket"
+                "adamant-shield",
+                "moonlight-dreamblade",
+                "waters-origin"
             ],
             3: [
-                "daydream-joker",
-                "ancient-sheath",
-                "butterfly-mandolin"
+                "grail-of-blood",
+                "exorcists-tonfa",
+                "aqua-rose"
             ]
         }
     }

@@ -9,7 +9,7 @@ html {
 body {
     background: linear-gradient(to bottom, #9cf5ff, #a6ddfd, #a6bbfa, #a6bbfa, #a6ddfd, #9cf5ff);
     background-size: 100% 200vh;
-    animation: bg-animation 10s infinite;
+    /*animation: bg-animation 10s infinite;*/
 }
 
 @keyframes bg-animation {
@@ -192,7 +192,7 @@ h4 {
 }
 
 .banner-bg-rateup {
-    background-image: url("assets/charles-banner.png");
+    background-image: url("assets/cermia-banner.png");
 }
 
 .banner-bg-limited {
@@ -212,7 +212,7 @@ h4 {
 }
 
 .grid-placeholder {
-    height: 15rem;
+    height: 21rem;
 }
 
 .grid-placeholder-text {
