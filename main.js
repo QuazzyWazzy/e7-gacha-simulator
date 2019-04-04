@@ -184,12 +184,17 @@ function Roll(banner, pool, id) {
                     if(rarity == "New") {
                         if(banner == "LimitedBanner")
                             summonUnit(type, Pool.LimitedUnit, id);
-                        else {
+                        else if(banner == "RateUpBanner"){
                             if(type == "hero")
                                 summonUnit(type, Pool.NewHero, id);
                             else
                                 summonUnit(type, Pool.NewArtifact, id);
-                        }         
+                        } else if(banner == "DoubleBanner") {
+                            getRandom(0, 1, function(data) {
+                                var index = parseInt(data);
+                                summonUnit(type, Pool.DoubleBanner[index], id);
+                            });
+                        }       
                     } else {
                         // Get random unit from pool
                         var currentPool = Pool[pool][type][rarity];

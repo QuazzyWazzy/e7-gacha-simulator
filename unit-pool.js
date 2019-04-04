@@ -1,8 +1,9 @@
 var Pool = {
 
     LimitedUnit: "luna",
-    NewHero: "cermia",
-    NewArtifact: "border-coin",
+    NewHero: "",
+    NewArtifact: "",
+    DoubleBanner: ["krau", "tenebria"],
 
     NormalSummon: {
         hero: {
@@ -12,6 +13,7 @@ var Pool = {
                 "basar",
                 "bellona",
                 "cecilia",
+                "cermia",
                 "charles",
                 "charlotte",
                 "chloe",
@@ -92,6 +94,7 @@ var Pool = {
                 "abyssal-crown",
                 "alexas-basket",
                 "bloodstone",
+                "border-coin",
                 "celestine",
                 "durandal",
                 "elbris-ritual-sword",
@@ -216,35 +219,35 @@ var Pool = {
         hero: {
             5: [
                 "silver-blade-aramintha",
-                "haste"
+                "tywin"
             ],
             4: [
                 "blaze-dingo",
-                "zerato",
-                "rin",
-                "corvus",
-                "silk"
+                "rose",
+                "armin",
+                "maya",
+                "coli"
             ],
             3: [
-                "kluri",
-                "montmorancy",
-                "helga",
-                "azalea"
+                "aither",
+                "judith",
+                "mucacha",
+                "jena"
             ]
         },
         artifact: {
             5: [
-                "abyssal-crown"
+                "rhianna-luciella"
             ],
             4: [
-                "adamant-shield",
-                "moonlight-dreamblade",
-                "waters-origin"
+                "strak-gauntlet",
+                "aurius",
+                "sira-ren"
             ],
             3: [
-                "grail-of-blood",
-                "exorcists-tonfa",
-                "aqua-rose"
+                "atmas-portal",
+                "alsacian-spear",
+                "sword-of-the-morning"
             ]
         }
     }

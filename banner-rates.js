@@ -30,4 +30,13 @@ var Rates = {
         [27.5, "4", "hero"],
         [70, "3", "hero"],
     ],
+    DoubleBanner: [
+        [0.8, "New", "hero"],
+        [0.45, "5", "hero"],
+        [4.5, "4", "hero"],
+        [41, "3", "hero"],
+        [1.75, 5, "artifact"],
+        [6.5, 4, "artifact"],
+        [45, 3, "artifact"]
+    ]
 }
