@@ -1,9 +1,9 @@
 var Pool = {
 
-    LimitedUnit: "luna",
+    LimitedUnit: "baiken",
+    LimitedArtifact: "torn-sleeve",
     NewHero: "",
     NewArtifact: "",
-    DoubleBanner: ["krau", "tenebria"],
 
     NormalSummon: {
         hero: {
@@ -171,6 +171,7 @@ var Pool = {
                 "maid-chloe",
                 "martial-artist-ken",
                 "ruele-of-light",
+                "sage-baal-sezan",
                 "silver-blade-aramintha",
                 "specimen-sez",
                 "specter-tenebria"
@@ -184,6 +185,7 @@ var Pool = {
                 "blood-blade-karin",
                 "celestial-mercedes",
                 "challenger-dominiel",
+                "crescent-moon-rin",
                 "crimson-armin",
                 "fighter-maya",
                 "general-purrgis",
@@ -218,36 +220,36 @@ var Pool = {
     MysticSummon: {
         hero: {
             5: [
-                "silver-blade-aramintha",
-                "tywin"
+                "sage-baal-sezan",
+                "kayron"
             ],
             4: [
-                "blaze-dingo",
+                "crescent-moon-rin",
                 "rose",
-                "armin",
+                "achates",
                 "maya",
                 "coli"
             ],
             3: [
-                "aither",
+                "enott",
+                "adlay",
                 "judith",
-                "mucacha",
-                "jena"
+                "mistychain"
             ]
         },
         artifact: {
             5: [
-                "rhianna-luciella"
+                "celestine"
             ],
             4: [
-                "strak-gauntlet",
-                "aurius",
-                "sira-ren"
+                "els-fist",
+                "dust-devil",
+                "infinity-basket"
             ],
             3: [
-                "atmas-portal",
-                "alsacian-spear",
-                "sword-of-the-morning"
+                "mighty-yaksha",
+                "cursed-compass",
+                "oath-key"
             ]
         }
     }

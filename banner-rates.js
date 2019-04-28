@@ -21,7 +21,8 @@ var Rates = {
         [1, "New", "hero"],
         [4.5, "4", "hero"],
         [41.25, "3", "hero"],
-        [1.75, "5", "artifact"],
+        [1.05, "New", "artifact"],
+        [0.7, "5", "artifact"],
         [6.5, "4", "artifact"],
         [45, "3", "artifact"]
     ],

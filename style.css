@@ -196,7 +196,7 @@ h4 {
 }
 
 .banner-bg-limited {
-    background-image: url("assets/luna-banner.png");
+    background-image: url("assets/baiken-banner.png");
 }
 
 .grid-container {
@@ -212,7 +212,7 @@ h4 {
 }
 
 .grid-placeholder {
-    height: 19rem;
+    height: 17rem;
 }
 
 .grid-placeholder-text {
@@ -248,10 +248,37 @@ h4 {
 .summon-card-image:hover {
     transition: all .25s ease; 
     border-color: rgb(255, 231, 92);
+    animation: none;
 }
 
 .summon-card-image:hover .unit-img {
     transform: scale(1.1);
+}
+
+.rarity-3 {
+    border: 0.2rem solid rgb(92, 182, 255);
+}
+
+.rarity-4 {
+   border: 0.4rem solid rgb(217, 92, 255); 
+   animation: rarity-4 1s ease-in-out infinite;
+}
+
+@keyframes rarity-4 {
+    0% { border-color: rgb(217, 92, 255); }
+    50% { border-color: rgb(135, 0, 177); }
+    100% { border-color: rgb(217, 92, 255); }
+}
+
+.rarity-5 {
+    border: 0.4rem solid rgb(255, 92, 92);
+    animation: rarity-5 1s ease-in-out infinite;
+}
+
+@keyframes rarity-5 {
+    0% { border-color: rgb(255, 92, 92); }
+    50% { border-color: rgb(177, 0, 0); }
+    100% { border-color: rgb(255, 92, 92); }
 }
 
 [data-type] .unit-img {

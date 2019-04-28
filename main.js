@@ -182,9 +182,12 @@ function Roll(banner, pool, id) {
                     var type = r[i][2];
                     // Rolled Banner Unit
                     if(rarity == "New") {
-                        if(banner == "LimitedBanner")
-                            summonUnit(type, Pool.LimitedUnit, id);
-                        else if(banner == "RateUpBanner"){
+                        if(banner == "LimitedBanner") {
+                            if(type == "hero")
+                                summonUnit(type, Pool.LimitedUnit, id);
+                            else
+                                summonUnit(type, Pool.LimitedArtifact, id);
+                        } else if(banner == "RateUpBanner"){
                             if(type == "hero")
                                 summonUnit(type, Pool.NewHero, id);
                             else
@@ -256,8 +259,8 @@ function summonUnit(type, fileId, id) {
     })
     .attr("src", imageUnit)
     .addClass("unit-img");
-    $card.find(".summon-card-image").append(image).attr("data-type", type).attr("data-unit", fileId);
-
+    $card.find(".summon-card-image").addClass("rarity-" + unit.rarity)
+    .append(image).attr("data-type", type).attr("data-unit", fileId);
 }
 
 /* Deprecated, better caching system implemented
