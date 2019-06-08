@@ -1,9 +1,9 @@
 var Pool = {
 
-    LimitedUnit: "baiken",
-    LimitedArtifact: "torn-sleeve",
-    NewHero: "",
-    NewArtifact: "",
+    LimitedUnit: "",
+    LimitedArtifact: "",
+    NewHero: "luluca",
+    NewArtifact: "spirits-breath",
 
     NormalSummon: {
         hero: {
@@ -221,35 +221,35 @@ var Pool = {
         hero: {
             5: [
                 "sage-baal-sezan",
-                "kayron"
+                "violet"
             ],
             4: [
                 "crescent-moon-rin",
-                "rose",
-                "achates",
-                "maya",
-                "coli"
+                "cidd",
+                "zerato",
+                "schuri",
+                "rose"
             ],
             3: [
-                "enott",
-                "adlay",
-                "judith",
-                "mistychain"
+                "carmainerose",
+                "taranor-guard",
+                "kluri",
+                "judith"
             ]
         },
         artifact: {
             5: [
-                "celestine"
+                "purple-talisman"
             ],
             4: [
-                "els-fist",
-                "dust-devil",
-                "infinity-basket"
+                "hell-cutter",
+                "elyhas-knife",
+                "sashe-ithanes"
             ],
             3: [
-                "mighty-yaksha",
+                "grail-of-blood",
                 "cursed-compass",
-                "oath-key"
+                "mighty-yaksha"
             ]
         }
     }
