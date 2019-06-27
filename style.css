@@ -212,7 +212,7 @@ h4 {
 }
 
 .grid-placeholder {
-    height: 17rem;
+    height: 23rem;
 }
 
 .grid-placeholder-text {
@@ -224,7 +224,7 @@ h4 {
 }
 
 .link, .link:hover {
-    color: white;
+    color: rgb(187, 241, 255);
 }
 
 .summon-card {
